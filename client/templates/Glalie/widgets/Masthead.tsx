@@ -33,14 +33,14 @@ export const MastheadSidebar: React.FC = () => {
         <p className="mt-1 opacity-75">{headline}</p>
       </div>
 
-      <div className="flex flex-col gap-2 rounded border-2 p-4" style={{ borderColor: primaryColor }}>
+      <div className="flex flex-col gap-2 rounded border-2 p-4" style={{ borderColor: 'transparent' }}>
         <DataDisplay icon={<Room />} className="text-xs">
           {formatLocation(location)}
         </DataDisplay>
 
-        <DataDisplay icon={<Cake />} className="text-xs">
+        {/* <DataDisplay icon={<Cake />} className="text-xs">
           {formatDateString(birthdate, dateFormat)}
-        </DataDisplay>
+        </DataDisplay> */}
 
         <DataDisplay icon={<Email />} className="text-xs" link={`mailto:${email}`}>
           {email}

@@ -31,6 +31,8 @@ const defaultState: FormData = {
     end: '',
   },
   url: '',
+  githubUrl: '',
+  videoUrl: '',
   summary: '',
   keywords: [],
 };
@@ -44,6 +46,8 @@ const schema = Joi.object<FormData>().keys({
     end: Joi.string().allow(''),
   }),
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
+  githubUrl: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
+  videoUrl: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
   keywords: Joi.array().items(Joi.string().optional()),
 });
@@ -190,6 +194,36 @@ const ProjectModal: React.FC = () => {
           render={({ field, fieldState }) => (
             <TextField
               label={t<string>('builder.common.form.url.label')}
+              placeholder="https://"
+              className="col-span-2"
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="githubUrl"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              label={t<string>('builder.common.form.githubUrl.label')}
+              placeholder="https://"
+              className="col-span-2"
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="videoUrl"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              label={t<string>('builder.common.form.videoUrl.label')}
               placeholder="https://"
               className="col-span-2"
               error={!!fieldState.error}

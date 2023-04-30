@@ -9,7 +9,14 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
   return (
     <h3
       className="mb-2 w-full border-b-2 pb-1.5 font-bold uppercase"
-      style={{ color: theme.primary, borderColor: theme.primary }}
+      style={{
+        color: theme.primary,
+        borderColor: theme.primary,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
     >
       {children}
     </h3>

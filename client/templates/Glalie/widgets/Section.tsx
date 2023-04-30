@@ -14,6 +14,7 @@ import { addHttp, parseListItemPath } from '@/utils/template';
 
 import BadgeDisplay from './BadgeDisplay';
 import Heading from './Heading';
+import Links from './Links';
 
 const Section: React.FC<SectionProps> = ({
   path,
@@ -52,7 +53,13 @@ const Section: React.FC<SectionProps> = ({
             email: string = get(item, 'email', ''),
             summary: string = get(item, 'summary', ''),
             levelNum: number = get(item, 'levelNum', 0),
-            date = formatDateString(get(item, 'date', ''), dateFormat);
+            githubUrl: number = get(item, 'githubUrl', ''),
+            awardUrl: number = get(item, 'awardUrl', ''),
+            videoUrl: number = get(item, 'videoUrl', ''),
+            date = formatDateString(
+              get(item, 'date', ''),
+              ['awards', 'education'].includes(sectionId) ? 'YYYY' : dateFormat
+            );
 
           return (
             <div key={id} id={id} className="grid gap-1">
@@ -64,6 +71,7 @@ const Section: React.FC<SectionProps> = ({
 
                 <div className="flex flex-col gap-1 text-right text-xs">
                   {date && <div className="opacity-50">({date})</div>}
+                  {['projects', 'awards'].includes(sectionId) ? <Links sectionId={sectionId} data={item} /> : null}
                   {headline && <span className="opacity-75">{headline}</span>}
                 </div>
               </div>
@@ -82,11 +90,11 @@ const Section: React.FC<SectionProps> = ({
 
               {summary && <Markdown>{summary}</Markdown>}
 
-              {url && (
+              {/* {url && (
                 <DataDisplay icon={<Link />} link={addHttp(url)}>
                   {url}
                 </DataDisplay>
-              )}
+              )} */}
 
               {keywords && <BadgeDisplay items={keywords} />}
 

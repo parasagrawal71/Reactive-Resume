@@ -27,15 +27,17 @@ const defaultState: FormData = {
   awarder: '',
   date: '',
   url: '',
+  awardUrl: '',
   summary: '',
 };
 
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
   title: Joi.string().required(),
-  awarder: Joi.string().required(),
+  awarder: Joi.string().allow(''),
   date: Joi.string().allow(''),
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
+  awardUrl: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
 });
 
@@ -114,7 +116,6 @@ const AwardModal: React.FC = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextField
-              required
               label={t<string>('builder.leftSidebar.sections.awards.form.awarder.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
@@ -155,6 +156,20 @@ const AwardModal: React.FC = () => {
           render={({ field, fieldState }) => (
             <TextField
               label={t<string>('builder.common.form.url.label')}
+              placeholder="https://"
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="awardUrl"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              label={t<string>('builder.common.form.awardUrl.label')}
               placeholder="https://"
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
