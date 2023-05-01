@@ -3,7 +3,7 @@ import get from 'lodash/get';
 
 import { useAppSelector } from '@/store/hooks';
 
-const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ children, sectionId }) => {
   const theme: ThemeConfig = useAppSelector((state) => get(state.resume.present, 'metadata.theme', {} as ThemeConfig));
 
   return (
@@ -16,6 +16,8 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        // marginTop: ['awards', 'education'].includes(sectionId) ? 10 : undefined,
+        marginTop: 5,
       }}
     >
       {children}

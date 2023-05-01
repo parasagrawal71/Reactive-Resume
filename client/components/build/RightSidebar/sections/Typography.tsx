@@ -59,11 +59,11 @@ const Widgets: React.FC<WidgetProps> = ({ label, category }) => {
       <div className={styles.container}>
         <div className={styles.slider}>
           <Slider
-            min={12}
+            min={10}
             max={36}
             step={1}
             marks={[
-              { value: 12, label: '12px' },
+              { value: 10, label: '10px' },
               { value: 24, label: t<string>('builder.rightSidebar.sections.typography.form.font-size.label') },
               { value: 36, label: '36px' },
             ]}

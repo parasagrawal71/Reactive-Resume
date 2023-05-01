@@ -20,6 +20,9 @@ export type Education = {
   url?: string;
   summary?: string;
   courses?: string[];
+  degree2?: string;
+  area2?: string;
+  score2?: string;
 };
 
 export type Award = {

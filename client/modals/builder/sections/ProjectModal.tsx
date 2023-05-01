@@ -40,7 +40,7 @@ const defaultState: FormData = {
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
   name: Joi.string().required(),
-  description: Joi.string().required(),
+  description: Joi.string().allow(''),
   date: Joi.object().keys({
     start: Joi.string().allow(''),
     end: Joi.string().allow(''),
@@ -127,7 +127,6 @@ const ProjectModal: React.FC = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextField
-              required
               label={t<string>('builder.common.form.description.label')}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}

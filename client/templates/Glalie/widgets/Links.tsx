@@ -36,16 +36,16 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ sectionId, data }
   // https://www.svgrepo.com/
   const projectLinks = [
     {
-      iconUrl: 'https://www.svgrepo.com/show/500737/video-play.svg',
-      key: 'videoUrl',
-    },
-    {
       iconUrl: 'https://www.svgrepo.com/show/506476/external-link.svg',
       key: 'url',
     },
     {
       iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
       key: 'githubUrl',
+    },
+    {
+      iconUrl: 'https://www.svgrepo.com/show/500737/video-play.svg',
+      key: 'videoUrl',
     },
   ];
 
@@ -67,7 +67,8 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ sectionId, data }
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
+        paddingRight: 10,
       }}
     >
       {linksToShow?.length

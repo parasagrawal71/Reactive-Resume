@@ -35,7 +35,7 @@ const Section: React.FC<SectionProps> = ({
 
   return (
     <section id={`Glalie_${sectionId}`}>
-      <Heading>{section.name}</Heading>
+      <Heading sectionId={sectionId}>{section.name}</Heading>
 
       <div
         className="grid items-start gap-4"
@@ -53,28 +53,72 @@ const Section: React.FC<SectionProps> = ({
             email: string = get(item, 'email', ''),
             summary: string = get(item, 'summary', ''),
             levelNum: number = get(item, 'levelNum', 0),
-            githubUrl: number = get(item, 'githubUrl', ''),
-            awardUrl: number = get(item, 'awardUrl', ''),
-            videoUrl: number = get(item, 'videoUrl', ''),
-            date = formatDateString(
-              get(item, 'date', ''),
-              ['awards', 'education'].includes(sectionId) ? 'YYYY' : dateFormat
-            );
+            // githubUrl: number = get(item, 'githubUrl', ''),
+            // awardUrl: number = get(item, 'awardUrl', ''),
+            // videoUrl: number = get(item, 'videoUrl', ''),
+            degree2: number = get(item, 'degree2', ''),
+            area2: number = get(item, 'area2', ''),
+            score2: number = get(item, 'score2', ''),
+            date = formatDateString(get(item, 'date', ''), ['education'].includes(sectionId) ? 'YYYY' : dateFormat);
 
           return (
             <div key={id} id={id} className="grid gap-1">
-              <div className="flex items-start justify-between">
-                <div className="flex flex-col">
-                  {title && <span className="font-semibold">{title}</span>}
-                  {subtitle && <span className="opacity-75">{subtitle}</span>}
-                </div>
+              {!['education'].includes(sectionId) ? (
+                <div className="flex items-start justify-between">
+                  <div className="flex flex-col">
+                    {title && <span className="font-semibold">{title}</span>}
+                    {subtitle && <span className="opacity-75">{subtitle}</span>}
+                  </div>
 
-                <div className="flex flex-col gap-1 text-right text-xs">
-                  {date && <div className="opacity-50">({date})</div>}
-                  {['projects', 'awards'].includes(sectionId) ? <Links sectionId={sectionId} data={item} /> : null}
-                  {headline && <span className="opacity-75">{headline}</span>}
+                  <div className="flex flex-col gap-1 text-right text-xs">
+                    {date && <div className="opacity-50">({date})</div>}
+                    {headline && <span className="opacity-75">{headline}</span>}
+                  </div>
                 </div>
-              </div>
+              ) : null}
+
+              {['education'].includes(sectionId) ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    {title && (
+                      <span className="font-semibold">
+                        {`${title} `}
+                        <span className="opacity-50 font-normal">({date})</span>
+                      </span>
+                    )}
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    {subtitle && <div className="opacity-75">{subtitle}</div>}
+                    {headline && <div className="opacity-75">{headline}</div>}
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    {degree2 && area2 && <div className="opacity-75">{`${degree2}, ${area2}`}</div>}
+                    {score2 && <div className="opacity-75">{score2}</div>}
+                  </div>
+                </div>
+              ) : null}
 
               {(level || levelNum > 0) && (
                 <div className="grid gap-1">
@@ -95,6 +139,17 @@ const Section: React.FC<SectionProps> = ({
                   {url}
                 </DataDisplay>
               )} */}
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                {['projects', 'awards'].includes(sectionId) ? <Links sectionId={sectionId} data={item} /> : null}
+              </div>
 
               {keywords && <BadgeDisplay items={keywords} />}
 

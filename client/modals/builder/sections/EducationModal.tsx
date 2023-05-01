@@ -35,6 +35,9 @@ const defaultState: FormData = {
   url: '',
   summary: '',
   courses: [],
+  degree2: '',
+  area2: '',
+  score2: '',
 };
 
 const schema = Joi.object<FormData>().keys({
@@ -50,6 +53,9 @@ const schema = Joi.object<FormData>().keys({
   url: Joi.string().pattern(VALID_URL_REGEX, { name: 'valid URL' }).allow(''),
   summary: Joi.string().allow(''),
   courses: Joi.array().items(Joi.string().optional()),
+  degree2: Joi.string().allow(''),
+  area2: Joi.string().allow(''),
+  score2: Joi.string().allow(''),
 });
 
 const EducationModal: React.FC = () => {
@@ -241,6 +247,48 @@ const EducationModal: React.FC = () => {
               className="col-span-2"
               error={!!fieldState.error}
               helperText={fieldState.error?.message || <MarkdownSupported />}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="degree2"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              required
+              label={t<string>('builder.leftSidebar.sections.education.form.degree2.label')}
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="area2"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              required
+              label={t<string>('builder.leftSidebar.sections.education.form.area2.label')}
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          name="score2"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextField
+              required
+              label={t<string>('builder.leftSidebar.sections.education.form.score2.label')}
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
               {...field}
             />
           )}

@@ -65,6 +65,15 @@
       },
       "videoUrl": {
         "label": "Video URL"
+      },
+      "degree2": {
+        "label": "Degree 2"
+      },
+      "area2": {
+        "label": "Area 2"
+      },
+      "score2": {
+        "label": "Score 2"
       }
     },
     "glossary": {
