@@ -1,0 +1,3 @@
+- Open postgres shell in terminal
+    psql postgres
+
