@@ -61,12 +61,26 @@ const Section: React.FC<SectionProps> = ({
             score2: number = get(item, 'score2', ''),
             date = formatDateString(get(item, 'date', ''), ['education'].includes(sectionId) ? 'YYYY' : dateFormat);
 
+          // console.log(`sectionId: `, sectionId);
+
           return (
             <div key={id} id={id} className="grid gap-1">
               {!['education'].includes(sectionId) ? (
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col">
-                    {title && <span className="font-semibold">{title}</span>}
+                    {['work'].includes(sectionId) ? (
+                      <>
+                        {title && url && (
+                          <span className="font-semibold" style={{ textDecoration: 'underline' }}>
+                            <a href={url} target="_blank">
+                              {title}
+                            </a>
+                          </span>
+                        )}
+                        {title && !url && <span className="font-semibold">{title}</span>}
+                      </>
+                    ) : null}
+                    {!['work'].includes(sectionId) ? title && <span className="font-semibold">{title}</span> : null}
                     {subtitle && <span className="opacity-75">{subtitle}</span>}
                   </div>
 
@@ -140,16 +154,18 @@ const Section: React.FC<SectionProps> = ({
                 </DataDisplay>
               )} */}
 
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                }}
-              >
-                {['projects', 'awards'].includes(sectionId) ? <Links sectionId={sectionId} data={item} /> : null}
-              </div>
+              {['projects', 'awards', 'certifications'].includes(sectionId) ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                  }}
+                >
+                  <Links sectionId={sectionId} data={item} />
+                </div>
+              ) : null}
 
               {keywords && <BadgeDisplay items={keywords} />}
 

@@ -16,21 +16,22 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ sectionId, data }
   };
 
   useEffect(() => {
+    let links: any = [];
+
     if (sectionId === 'projects') {
-      const filteredProjectLinks = projectLinks?.filter((p) => {
-        if (data[p?.key]) {
-          return p;
-        }
-      });
-      setLinksToShow(filteredProjectLinks);
+      links = projectLinks;
     } else if (sectionId === 'awards') {
-      const filteredAwardLinks = awardLinks?.filter((p) => {
-        if (data[p?.key]) {
-          return p;
-        }
-      });
-      setLinksToShow(filteredAwardLinks);
+      links = awardLinks;
+    } else if (sectionId === 'certifications') {
+      links = certificationLinks;
     }
+
+    const filteredLinks = links?.filter((p) => {
+      if (data[p?.key]) {
+        return p;
+      }
+    });
+    setLinksToShow(filteredLinks);
   }, [sectionId]);
 
   // https://www.svgrepo.com/
@@ -57,6 +58,13 @@ const Heading: React.FC<React.PropsWithChildren<unknown>> = ({ sectionId, data }
     {
       iconUrl: 'https://www.svgrepo.com/show/472992/award.svg',
       key: 'awardUrl',
+    },
+  ];
+
+  const certificationLinks = [
+    {
+      iconUrl: 'https://www.svgrepo.com/show/450704/certificate.svg',
+      key: 'url',
     },
   ];
 
