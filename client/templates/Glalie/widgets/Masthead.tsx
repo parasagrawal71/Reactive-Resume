@@ -30,7 +30,7 @@ export const MastheadSidebar: React.FC = () => {
 
       <div className="text-center">
         <h1>{name}</h1>
-        <p className="mt-1 opacity-75">{headline}</p>
+        <h3 className="mt-1 opacity-50">{headline}</h3>
       </div>
 
       <div className="flex flex-col gap-2 rounded border-2 p-4" style={{ borderColor: 'transparent' }}>
