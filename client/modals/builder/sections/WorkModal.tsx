@@ -33,7 +33,7 @@ const defaultState: FormData = {
 
 const schema = Joi.object<FormData>().keys({
   id: Joi.string(),
-  name: Joi.string().required(),
+  name: Joi.string().allow(''),
   position: Joi.string().required(),
   date: Joi.object().keys({
     start: Joi.string().allow(''),
@@ -117,7 +117,7 @@ const WorkModal: React.FC = () => {
           control={control}
           render={({ field, fieldState }) => (
             <TextField
-              required
+              // required
               autoFocus
               label={t<string>('builder.common.form.name.label')}
               error={!!fieldState.error}
