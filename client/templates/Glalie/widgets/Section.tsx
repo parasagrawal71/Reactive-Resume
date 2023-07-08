@@ -80,7 +80,26 @@ const Section: React.FC<SectionProps> = ({
                         {title && !url && <span className="font-semibold">{title}</span>}
                       </>
                     ) : null}
-                    {!['work'].includes(sectionId) ? title && <span className="font-semibold">{title}</span> : null}
+                    {!['work'].includes(sectionId)
+                      ? title && (
+                          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            <div className="font-semibold">{title}</div>
+                            {['projects'].includes(sectionId) ? (
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  justifyContent: 'flex-start',
+                                  marginLeft: 10,
+                                }}
+                              >
+                                <Links sectionId={sectionId} data={item} />
+                              </div>
+                            ) : null}
+                          </div>
+                        )
+                      : null}
                     {subtitle && <span className="opacity-75">{subtitle}</span>}
                   </div>
 
@@ -154,7 +173,7 @@ const Section: React.FC<SectionProps> = ({
                 </DataDisplay>
               )} */}
 
-              {['projects', 'awards', 'certifications'].includes(sectionId) ? (
+              {['awards', 'certifications'].includes(sectionId) ? (
                 <div
                   style={{
                     display: 'flex',
