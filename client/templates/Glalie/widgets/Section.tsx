@@ -13,6 +13,7 @@ import { formatDateString } from '@/utils/date';
 import { addHttp, parseListItemPath } from '@/utils/template';
 
 import BadgeDisplay from './BadgeDisplay';
+import ProjectSkillBadge from './ProjectSkillBadge';
 import Heading from './Heading';
 import Links from './Links';
 
@@ -186,7 +187,9 @@ const Section: React.FC<SectionProps> = ({
                 </div>
               ) : null}
 
-              {keywords && <BadgeDisplay items={keywords} />}
+              {!['projects'].includes(sectionId) && keywords ? <BadgeDisplay items={keywords} /> : null}
+
+              {['projects'].includes(sectionId) && keywords ? <ProjectSkillBadge items={keywords} /> : null}
 
               {(phone || email) && (
                 <div className="grid gap-1">
