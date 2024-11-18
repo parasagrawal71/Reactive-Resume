@@ -1,3 +1,7 @@
 - Open postgres shell in terminal
     psql postgres
+    \c postgres
+    select * from "user";
 
+Username: parasagrawal71
+Email: parasagrawal71@gmail.com
